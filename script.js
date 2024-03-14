@@ -80,21 +80,22 @@ document.addEventListener('DOMContentLoaded', function () {
         const gradient = getGradientString(gradientType, direction, colorStops);
         gradientPreview.style.background = gradient;
 
-        // Display color codes and gradient CSS
         const colorCodesContainer = document.getElementById('color-codes');
         colorCodesContainer.innerHTML = '';
         colorStops.forEach((stop, index) => {
             const colorRGB = hexToRgb(stop.color);
             const colorHex = stop.color.toUpperCase();
             const colorCodeElement = document.createElement('p');
-            colorCodeElement.textContent = `Color ${index + 1}: RGB: ${colorRGB.r}, ${colorRGB.g}, ${colorRGB.b}, HEX: ${colorHex}`;
+            colorCodeElement.innerHTML = `Color ${index + 1}: <span>RGB: ${colorRGB.r}, ${colorRGB.g}, ${colorRGB.b}</span><span>HEX: ${colorHex}</span>`;
             colorCodesContainer.appendChild(colorCodeElement);
         });
 
         const gradientCSS = document.createElement('p');
-        gradientCSS.textContent = `Gradient CSS: background: ${gradient};`;
+        gradientCSS.innerHTML = `Gradient CSS: <span>background: ${gradient};</span>`;
         colorCodesContainer.appendChild(gradientCSS);
     }
+
+
 
     function getGradientString(type, direction, stops) {
         let gradientStops = stops.map(stop => `${stop.color} ${stop.position}%`).join(', ');

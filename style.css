@@ -7,33 +7,108 @@
   font-family: "Poppins", sans-serif;
 }
 
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.title > h1 {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.title > img {
+  height: 50px;
+}
+
+
 .container {
   max-width: 800px;
   margin: 20px auto;
   padding: 20px;
   background-color: #f4f4f4;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .controls {
   margin-bottom: 20px;
+  display: flex;
+  gap: 20px;
 }
 
 .controls label {
   font-weight: bold;
 }
 
-.controls input[type="color"] {
-  margin-right: 10px;
+.basic-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.color-define {
+  border: 1px solid #ccc;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.color-define > button {
+  padding: 3px 15px;
+  cursor: pointer;
 }
 
 .color-stop {
   margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-stop > button {
+  padding: 3px 8px;
+  cursor: pointer;
+  border-radius: 100%;
+  border: 1px solid #ccc;
+}
+
+#generate-gradient {
+  padding: 3px 15px;
+}
+
+#color-codes p {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  font-weight: bold;
+}
+
+#color-codes p span {
+  font-weight: 500;
 }
 
 .preview {
   width: 100%;
   height: 200px;
   margin-bottom: 20px;
+}
+
+@media (max-width:601px){
+  .controls {
+    flex-direction: column;
+    gap: 20px;
+  }
+  #color-stops {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  #color-codes {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 }
