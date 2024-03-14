@@ -31,6 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
         generateGradientPreview();
     });
 
+    generateButton.addEventListener('click', function () {
+        generateGradientPreview();
+    });
+
     function renderColorStops() {
         colorStopsContainer.innerHTML = '';
         colorStops.forEach(function (stop, index) {
@@ -75,6 +79,21 @@ document.addEventListener('DOMContentLoaded', function () {
         const direction = directionInput.value;
         const gradient = getGradientString(gradientType, direction, colorStops);
         gradientPreview.style.background = gradient;
+
+        // Display color codes and gradient CSS
+        const colorCodesContainer = document.getElementById('color-codes');
+        colorCodesContainer.innerHTML = '';
+        colorStops.forEach((stop, index) => {
+            const colorRGB = hexToRgb(stop.color);
+            const colorHex = stop.color.toUpperCase();
+            const colorCodeElement = document.createElement('p');
+            colorCodeElement.textContent = `Color ${index + 1}: RGB: ${colorRGB.r}, ${colorRGB.g}, ${colorRGB.b}, HEX: ${colorHex}`;
+            colorCodesContainer.appendChild(colorCodeElement);
+        });
+
+        const gradientCSS = document.createElement('p');
+        gradientCSS.textContent = `Gradient CSS: background: ${gradient};`;
+        colorCodesContainer.appendChild(gradientCSS);
     }
 
     function getGradientString(type, direction, stops) {
@@ -91,5 +110,14 @@ document.addEventListener('DOMContentLoaded', function () {
             default:
                 return '';
         }
+    }
+
+    function hexToRgb(hex) {
+        hex = hex.replace('#', '');
+        const bigint = parseInt(hex, 16);
+        const r = (bigint >> 16) & 255;
+        const g = (bigint >> 8) & 255;
+        const b = bigint & 255;
+        return { r, g, b };
     }
 });
